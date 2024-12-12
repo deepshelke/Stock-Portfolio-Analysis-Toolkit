@@ -1,34 +1,46 @@
+# Python_files/performance.py
+
 import yfinance as yf
 import pandas as pd
+import numpy as np
 
-def fetch_stock_data(ticker, start_date, end_date):
+def fetch_stock_data(tickers):
     """
-    Fetch historical stock data for a given ticker.
+    Fetch stock data for the given tickers using yfinance.
     """
     try:
-        stock = yf.Ticker(ticker)
-        data = stock.history(start=start_date, end=end_date)
-        return data
+        data = yf.download(tickers, start="2020-01-01", end="2023-01-01")
+        if data.empty:
+            raise ValueError("No data returned for the given tickers.")
+        return data['Adj Close']
     except Exception as e:
-        raise ValueError(f"Error fetching data for {ticker}: {e}")
+        raise RuntimeError(f"Failed to fetch stock data: {e}")
 
-def calculate_daily_returns(data):
+def calculate_daily_returns(stock_data):
     """
-    Calculate daily percentage returns from stock price data.
+    Calculate daily returns for the given stock data.
     """
     try:
-        daily_returns = data['Close'].pct_change().dropna()
+        if stock_data.empty:
+            raise ValueError("Stock data is empty.")
+        daily_returns = stock_data.pct_change().dropna()
         return daily_returns
-    except KeyError:
-        raise ValueError("Input data must contain a 'Close' column.")
+    except Exception as e:
+        raise RuntimeError(f"Error in calculating daily returns: {e}")
 
-def calculate_portfolio_returns(stock_data, weights):
+def calculate_portfolio_returns(daily_returns, weights=None):
     """
-    Calculate the total returns of a portfolio with given stock data and weights.
+    Calculate portfolio returns given daily returns and weights.
     """
     try:
-        returns = [calculate_daily_returns(data) for data in stock_data]
-        portfolio_returns = pd.concat(returns, axis=1).dot(weights)
+        if daily_returns.empty:
+            raise ValueError("Daily returns data is empty.")
+        num_stocks = daily_returns.shape[1]
+        if weights is None:
+            weights = np.ones(num_stocks) / num_stocks
+        if len(weights) != num_stocks:
+            raise ValueError("Weights length must match the number of stocks.")
+        portfolio_returns = daily_returns.dot(weights)
         return portfolio_returns
     except Exception as e:
-        raise ValueError(f"Error calculating portfolio returns: {e}")
+        raise RuntimeError(f"Error in calculating portfolio returns: {e}")

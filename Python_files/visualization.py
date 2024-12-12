@@ -1,29 +1,32 @@
+# Python_files/visualization.py
+
 import matplotlib.pyplot as plt
 
-def plot_stock_trend(data, ticker):
+def plot_stock_trend(stock_data):
     """
-    Plot the historical stock price trend.
+    Plot stock price trends.
     """
     try:
-        plt.figure(figsize=(10, 6))
-        plt.plot(data.index, data['Close'], label=ticker)
-        plt.title(f"{ticker} Stock Price Trend")
+        if stock_data.empty:
+            raise ValueError("Stock data is empty.")
+        stock_data.plot(figsize=(10, 6), title="Stock Price Trends")
         plt.xlabel("Date")
-        plt.ylabel("Closing Price (USD)")
-        plt.legend()
-        plt.grid()
-        plt.show()
-    except KeyError:
-        raise ValueError("Input data must contain a 'Close' column.")
-
-def plot_portfolio_allocation(weights, tickers):
-    """
-    Plot a pie chart of portfolio allocation.
-    """
-    try:
-        plt.figure(figsize=(8, 8))
-        plt.pie(weights, labels=tickers, autopct='%1.1f%%', startangle=140)
-        plt.title("Portfolio Allocation")
+        plt.ylabel("Adjusted Close Price")
         plt.show()
     except Exception as e:
-        raise ValueError(f"Error plotting portfolio allocation: {e}")
+        raise RuntimeError(f"Error in plotting stock trends: {e}")
+
+def plot_portfolio_allocation(portfolio_returns):
+    """
+    Plot cumulative portfolio returns.
+    """
+    try:
+        if portfolio_returns.empty:
+            raise ValueError("Portfolio returns data is empty.")
+        portfolio_cumulative = (1 + portfolio_returns).cumprod()
+        portfolio_cumulative.plot(figsize=(10, 6), title="Cumulative Portfolio Returns")
+        plt.xlabel("Date")
+        plt.ylabel("Portfolio Value")
+        plt.show()
+    except Exception as e:
+        raise RuntimeError(f"Error in plotting portfolio allocation: {e}")
