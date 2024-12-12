@@ -26,7 +26,5 @@ The **Stock Portfolio Analysis Toolkit** is designed to help users analyze and v
 
 Follow these steps to install and run the Stock Portfolio Analysis Toolkit:
 
-### Prerequisites
-Make sure you have **Python 3.7+** installed. You can check if Python is installed by running the following command in your terminal:
-```bash
-python --version
+## Steps to run the project 
+
