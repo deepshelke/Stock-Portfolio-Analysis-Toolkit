@@ -24,41 +24,38 @@ The **Stock Portfolio Analysis Toolkit** is designed to help users analyze and v
 
 # Installation Guide for the Stock Portfolio Analysis Toolkit
 
-## **Download the Project**
+# Download Zip file or Clone the project directly
 
+**Step 1**:
 1. Clone the repository from GitHub using the following command:
    ```bash
    git clone https://github.com/username/stock-portfolio-analysis-toolkit.git
 
-2. Navigate to the project directory:
+**Step 2** Navigate to the project directory:
 cd stock-portfolio-analysis-toolkit
 
-3. Set Up the Environment
-Step 1: Create a Virtual Environment
-Creating a virtual environment isolates the dependencies for the project.
+**Step 3** Set Up the Environment
 
-Run the following command to create a virtual environment: python3 -m venv .venv
+I ) Run the following command to create a virtual environment: python3 -m venv .venv
 
-Activate the virtual environment:
+II) Activate the virtual environment:
 
 On macOS/Linux: source .venv/bin/activate
 
 On Windows: .venv\Scripts\activate
 
-4.Install Dependencies
+**Step 4** Install Dependencies
 
 Install all necessary dependencies from the requirements.txt file:
 
 pip3 install -r requirements.txt
 
-5. 
-
-Step 5: Additional Package Installation
+**Step 5**: Additional Package Installation
 If any packages are missing (like yfinance), ensure they are installed using the following command:
 
-pip3 install yfinance
+pip3 install finance
 
-Run the Project
+**Step 6** Run the Project
 To run the project, execute the main.py file:
-
+   ```bash
 python3 main.py
