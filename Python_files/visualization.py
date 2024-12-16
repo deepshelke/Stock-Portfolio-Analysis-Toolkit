@@ -1,11 +1,7 @@
-# Python_files/visualization.py
-
 import matplotlib.pyplot as plt
 
+# Plot stock price trends.
 def plot_stock_trend(stock_data):
-    """
-    Plot stock price trends.
-    """
     try:
         if stock_data.empty:
             raise ValueError("Stock data is empty.")
@@ -15,11 +11,9 @@ def plot_stock_trend(stock_data):
         plt.show()
     except Exception as e:
         raise RuntimeError(f"Error in plotting stock trends: {e}")
-
+    
+# Plot cumulative portfolio returns.
 def plot_portfolio_allocation(portfolio_returns):
-    """
-    Plot cumulative portfolio returns.
-    """
     try:
         if portfolio_returns.empty:
             raise ValueError("Portfolio returns data is empty.")

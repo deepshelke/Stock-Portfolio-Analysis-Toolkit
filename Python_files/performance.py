@@ -1,13 +1,10 @@
-# Python_files/performance.py
-
 import yfinance as yf
 import pandas as pd
 import numpy as np
 
+
+# Fetch stock data for the given tickers using yfinance.
 def fetch_stock_data(tickers):
-    """
-    Fetch stock data for the given tickers using yfinance.
-    """
     try:
         data = yf.download(tickers, start="2020-01-01", end="2023-01-01")
         if data.empty:
@@ -16,10 +13,8 @@ def fetch_stock_data(tickers):
     except Exception as e:
         raise RuntimeError(f"Failed to fetch stock data: {e}")
 
+#Calculate daily returns for the given stock data
 def calculate_daily_returns(stock_data):
-    """
-    Calculate daily returns for the given stock data.
-    """
     try:
         if stock_data.empty:
             raise ValueError("Stock data is empty.")
@@ -27,11 +22,9 @@ def calculate_daily_returns(stock_data):
         return daily_returns
     except Exception as e:
         raise RuntimeError(f"Error in calculating daily returns: {e}")
-
+    
+# Calculate portfolio returns given daily returns and weights.
 def calculate_portfolio_returns(daily_returns, weights=None):
-    """
-    Calculate portfolio returns given daily returns and weights.
-    """
     try:
         if daily_returns.empty:
             raise ValueError("Daily returns data is empty.")

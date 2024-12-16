@@ -1,11 +1,7 @@
-# Python_files/risk_analysis.py
-
 import numpy as np
 
+#Calculate volatility (standard deviation) of daily returns. 
 def calculate_volatility(daily_returns):
-    """
-    Calculate volatility (standard deviation) of daily returns.
-    """
     try:
         if daily_returns.empty:
             raise ValueError("Daily returns data is empty.")
@@ -14,10 +10,8 @@ def calculate_volatility(daily_returns):
     except Exception as e:
         raise RuntimeError(f"Error in calculating volatility: {e}")
 
+# Calculate Sharpe ratio of daily returns 
 def calculate_sharpe_ratio(daily_returns, risk_free_rate=0.01):
-    """
-    Calculate Sharpe ratio of daily returns.
-    """
     try:
         if daily_returns.empty:
             raise ValueError("Daily returns data is empty.")
