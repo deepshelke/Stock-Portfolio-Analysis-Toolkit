@@ -53,7 +53,7 @@ pip3 install -r requirements.txt
 **Step 5**: Additional Package Installation
 If any packages are missing (like yfinance), ensure they are installed using the following command:
 
-pip3 install finance
+pip3 install yfinance
 
 **Step 6** Run the Project
 To run the project, execute the main.py file:
