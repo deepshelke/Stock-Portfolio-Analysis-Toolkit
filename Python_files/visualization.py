@@ -17,7 +17,7 @@ def plot_portfolio_allocation(portfolio_returns):
     try:
         if portfolio_returns.empty:
             raise ValueError("Portfolio returns data is empty.")
-        portfolio_cumulative = (1 + portfolio_returns).cumprod()
+        portfolio_cumulative = (1 + portfolio_returns).cumprod() #Calculates the cumulative product of these values over time, simulating how the portfolio grows.
         portfolio_cumulative.plot(figsize=(10, 6), title="Cumulative Portfolio Returns")
         plt.xlabel("Date")
         plt.ylabel("Portfolio Value")

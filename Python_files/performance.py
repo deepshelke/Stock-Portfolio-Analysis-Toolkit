@@ -9,7 +9,7 @@ def fetch_stock_data(tickers):
         data = yf.download(tickers, start="2020-01-01", end="2023-01-01")
         if data.empty:
             raise ValueError("No data returned for the given tickers.")
-        return data['Adj Close']
+        return data['Adj Close'] #Adjusted Closing Prices which represent the most accurate daily stock value.
     except Exception as e:
         raise RuntimeError(f"Failed to fetch stock data: {e}")
 

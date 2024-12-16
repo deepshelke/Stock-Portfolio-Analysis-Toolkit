@@ -3,12 +3,11 @@ from Python_files.performance import fetch_stock_data, calculate_daily_returns, 
 from Python_files.visualization import plot_stock_trend, plot_portfolio_allocation
 from Python_files.risk_analysis import calculate_volatility, calculate_sharpe_ratio
 
+# Function to Prompt user for at least three stock tickers
 def get_user_input():
-    """Prompt user for at least three stock tickers."""
     while True:
         user_input = input("Enter at least 3 stock tickers, separated by commas (e.g., AAPL, MSFT, TSLA): ")
         tickers = [ticker.strip().upper() for ticker in user_input.split(',')]
-        
         if len(tickers) < 3:
             print("You must enter at least 3 stock tickers.")
         else:
