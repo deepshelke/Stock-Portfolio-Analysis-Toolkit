@@ -7,7 +7,7 @@ def plot_stock_trend(stock_data):
             raise ValueError("Stock data is empty.")
         stock_data.plot(figsize=(10, 6), title="Stock Price Trends")
         plt.xlabel("Date")
-        plt.ylabel("Adjusted Close Price")
+        plt.ylabel("Adjusted Close Price ($)")
         plt.show()
     except Exception as e:
         raise RuntimeError(f"Error in plotting stock trends: {e}")
